@@ -1,0 +1,5 @@
+<!doctype html><html><head><meta charset="utf-8"><title>LLMShield AI Report</title><style>body{font-family:Arial;background:#0f172a;color:#e2e8f0;padding:32px}.card{background:#111827;border:1px solid #334155;border-radius:14px;padding:20px;margin:16px 0}.critical{color:#f87171}.high{color:#fb923c}.medium{color:#facc15}.low{color:#86efac}code{color:#93c5fd}</style></head><body>
+<h1>LLMShield AI Scan Report</h1><p><strong>Scan ID:</strong> {{ scan.id }} | <strong>Status:</strong> {{ scan.status }} | <strong>Risk:</strong> {{ scan.risk_score }}</p><p>{{ authorization_note }}</p>
+<div class="card"><h2>Executive Summary</h2><p>Total: {{ scan.total_tests }} | Passed: {{ scan.passed_tests }} | Failed: {{ scan.failed_tests }}</p></div>
+<div class="card"><h2>Findings</h2>{% for finding in failed_findings %}<div class="card"><h3 class="{{ finding.severity }}">{{ finding.severity|upper }} — {{ finding.test_name }}</h3><p>{{ finding.category }} · {{ finding.detector_name }}</p><p><strong>Evidence:</strong> <code>{{ finding.evidence }}</code></p><p><strong>Mitigation:</strong> {{ finding.mitigation }}</p></div>{% endfor %}</div>
+</body></html>

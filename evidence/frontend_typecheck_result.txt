@@ -1,0 +1,10 @@
+$ C:\Program Files\nodejs\npm.cmd run typecheck
+cwd=.\frontend
+exit_code=0
+
+STDOUT:
+> llmshield-ai-frontend@0.2.0 typecheck
+> tsc --noEmit
+
+STDERR:
+(none)

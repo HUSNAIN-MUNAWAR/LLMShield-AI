@@ -1,0 +1,11 @@
+{
+  "provider": "openai",
+  "strict": false,
+  "dry_run": true,
+  "status": "passed",
+  "latency_ms": 0,
+  "error": null,
+  "configured": false,
+  "message": "Dry-run only; no OpenAI request made.",
+  "elapsed_ms": 0
+}

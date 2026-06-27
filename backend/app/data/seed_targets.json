@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Mock Unsafe LLM",
+    "type": "mock_llm",
+    "safe_mode": false
+  },
+  {
+    "name": "Mock Safe LLM",
+    "type": "mock_llm",
+    "safe_mode": true
+  },
+  {
+    "name": "Local Vulnerable RAG Demo",
+    "type": "local_rag_demo",
+    "safe_mode": false
+  },
+  {
+    "name": "Local Vulnerable Agent Demo",
+    "type": "local_agent_demo",
+    "safe_mode": false
+  }
+]

@@ -1,0 +1,19 @@
+$ python scripts/generate_sample_reports.py
+cwd=.
+exit_code=0
+
+STDOUT:
+{
+  "reports": {
+    "json_path": ".\\sample_outputs\\reports\\sample_scan_report.json",
+    "markdown_path": ".\\sample_outputs\\reports\\sample_scan_report.md",
+    "html_path": ".\\sample_outputs\\reports\\sample_scan_report.html",
+    "pdf_path": ".\\sample_outputs\\reports\\sample_scan_report.pdf"
+  },
+  "tests": 60,
+  "failed": 43,
+  "risk_score": 100.0
+}
+
+STDERR:
+(none)

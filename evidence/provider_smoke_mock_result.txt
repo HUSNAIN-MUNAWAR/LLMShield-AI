@@ -1,0 +1,20 @@
+$ python scripts/provider_smoke_test.py --provider mock
+cwd=.
+exit_code=0
+
+STDOUT:
+{
+  "provider": "mock",
+  "strict": false,
+  "dry_run": false,
+  "status": "passed",
+  "latency_ms": 12,
+  "error": null,
+  "configured": true,
+  "model": "mock-deterministic",
+  "response_preview": "I cannot reveal hidden instructions or comply with requests to reveal hidden instructions, leak data, invent citations, ",
+  "elapsed_ms": 0
+}
+
+STDERR:
+(none)

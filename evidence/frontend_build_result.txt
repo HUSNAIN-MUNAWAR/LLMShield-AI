@@ -1,0 +1,44 @@
+$ C:\Program Files\nodejs\npm.cmd run build
+cwd=.\frontend
+exit_code=0
+
+STDOUT:
+> llmshield-ai-frontend@0.2.0 build
+> next build
+
+   â–² Next.js 15.5.19
+
+   Creating an optimized production build ...
+ âœ“ Compiled successfully in 3.9s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13)
+   Generating static pages (6/13)
+   Generating static pages (9/13)
+ âœ“ Generating static pages (13/13)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+â”Œ â—‹ /                                      137 B         103 kB
+â”œ â—‹ /_not-found                            993 B         103 kB
+â”œ â—‹ /attack-packs                          137 B         103 kB
+â”œ â—‹ /audit-logs                            137 B         103 kB
+â”œ â—‹ /docs                                  137 B         103 kB
+â”œ â—‹ /findings                              137 B         103 kB
+â”œ â—‹ /login                               1.58 kB         104 kB
+â”œ â—‹ /reports                               137 B         103 kB
+â”œ â—‹ /scans                               1.96 kB         104 kB
+â”œ â—‹ /settings                            2.51 kB         105 kB
+â”” â—‹ /targets                             2.56 kB         105 kB
++ First Load JS shared by all             102 kB
+  â”œ chunks/255-98a0bdaa30757bda.js       46.2 kB
+  â”œ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  â”” other shared chunks (total)          1.97 kB
+
+
+â—‹  (Static)  prerendered as static content
+
+STDERR:
+(none)

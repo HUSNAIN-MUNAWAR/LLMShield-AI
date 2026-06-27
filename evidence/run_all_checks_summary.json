@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-06-27T17:01:14.638376+00:00",
+  "checks": {
+    "backend_compile": {
+      "exit_code": 0,
+      "required": true
+    },
+    "validation_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "secret_scan_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "backend_tests_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "sample_reports_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "provider_smoke_mock_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "screenshot_verify_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "docker_smoke_result": {
+      "exit_code": 2,
+      "required": false
+    },
+    "frontend_typecheck_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "frontend_build_result": {
+      "exit_code": 0,
+      "required": true
+    },
+    "sample_pdf_render_result": {
+      "exit_code": 0,
+      "required": true
+    }
+  },
+  "required_failed": []
+}

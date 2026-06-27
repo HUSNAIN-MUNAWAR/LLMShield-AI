@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment: {POSTGRES_USER: llmshield, POSTGRES_PASSWORD: llmshield, POSTGRES_DB: llmshield}
+    ports: ["5432:5432"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U llmshield"], interval: 10s, timeout: 5s, retries: 5}
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 10s, timeout: 5s, retries: 5}
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://llmshield:llmshield@postgres:5432/llmshield
+      REDIS_URL: redis://redis:6379/0
+      LLM_PROVIDER: mock
+      ENABLE_DEMO_TARGETS: "true"
+      ENDPOINT_ALLOWLIST: localhost,127.0.0.1,backend
+      JWT_SECRET: dev-compose-change-me
+      SCAN_EXECUTION_MODE: async
+    depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}
+    ports: ["8000:8000"]
+  worker:
+    build: ./backend
+    command: python -m app.workers.worker
+    environment:
+      DATABASE_URL: postgresql+psycopg://llmshield:llmshield@postgres:5432/llmshield
+      REDIS_URL: redis://redis:6379/0
+      SCAN_EXECUTION_MODE: async
+    depends_on: {backend: {condition: service_started}}
+  frontend:
+    build: ./frontend
+    environment: {NEXT_PUBLIC_API_BASE_URL: http://localhost:8000}
+    depends_on: {backend: {condition: service_started}}
+    ports: ["3000:3000"]

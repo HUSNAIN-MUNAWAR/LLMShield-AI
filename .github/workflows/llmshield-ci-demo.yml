@@ -1,0 +1,15 @@
+name: llmshield-ci-demo
+on: [push, pull_request]
+jobs:
+  mockllm-ci-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -r backend/requirements.txt
+      - run: cd backend && python -m app.cli ci-scan --target mock-safe --attack-packs prompt_injection,jailbreak,rag_poisoning --fail-on critical --output ../sample_outputs/reports/ci_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: llmshield-ci-report
+          path: sample_outputs/reports/ci_report.json

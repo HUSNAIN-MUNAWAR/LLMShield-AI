@@ -1,0 +1,7 @@
+version: "0.2.0"
+remediations:
+  instruction-isolation: Keep trusted system/developer instructions outside retrievable content.
+  secret-redaction: Redact secrets before storage/logging/UI/reporting.
+  tool-permissions: Use explicit tool allowlists and human approval gates.
+  grounded-citations: Require citations from approved source IDs only.
+  token-limits: Enforce max input/output tokens and timeouts.

@@ -1,0 +1,9 @@
+$ python scripts/check_docker_compose.py
+cwd=.
+exit_code=2
+
+STDOUT:
+NOT RUN: Docker CLI is not installed in this environment.
+
+STDERR:
+(none)

@@ -1,0 +1,2 @@
+LLMShield CI Summary
+tests=12 failed=4 risk=79.0 threshold_findings=0

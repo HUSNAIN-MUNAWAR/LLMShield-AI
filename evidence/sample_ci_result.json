@@ -1,0 +1,9 @@
+{
+  "scan_id": "c9d516c3-f068-4439-9ac4-53094ba32af0",
+  "status": "completed",
+  "risk_score": 79.0,
+  "total_tests": 12,
+  "failed_tests": 4,
+  "threshold_findings": 0,
+  "fail_on": "critical"
+}

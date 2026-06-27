@@ -1,0 +1,9 @@
+$ python -m compileall -q backend/app backend/tests
+cwd=.
+exit_code=0
+
+STDOUT:
+(none)
+
+STDERR:
+(none)

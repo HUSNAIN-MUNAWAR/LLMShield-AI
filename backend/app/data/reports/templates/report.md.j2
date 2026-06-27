@@ -1,0 +1,29 @@
+# LLMShield AI Scan Report
+
+**Scan ID:** {{ scan.id }}
+**Status:** {{ scan.status }}
+**Risk Score:** {{ scan.risk_score }}
+**Scope:** {{ authorization_note }}
+
+## Executive Summary
+
+Total tests: {{ scan.total_tests }}
+Passed: {{ scan.passed_tests }}
+Failed: {{ scan.failed_tests }}
+
+## Severity Distribution
+{% for severity, count in severity_distribution.items() -%}
+- {{ severity }}: {{ count }}
+{% endfor %}
+
+## Findings
+{% for finding in failed_findings %}
+### {{ finding.severity|upper }} — {{ finding.test_name }}
+- Category: {{ finding.category }}
+- Detector: {{ finding.detector_name }}
+- Evidence: `{{ finding.evidence }}`
+- Mitigation: {{ finding.mitigation }}
+{% endfor %}
+
+## Limitations
+This report does not guarantee security, does not fully prevent prompt injection, and does not replace professional penetration testing.

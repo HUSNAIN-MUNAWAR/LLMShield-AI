@@ -1,0 +1,9 @@
+$ python scripts/validate_project.py
+cwd=.
+exit_code=0
+
+STDOUT:
+Validation passed. attack_packs=15 tests=60 backend_test_functions=68
+
+STDERR:
+(none)
