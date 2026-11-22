@@ -109,6 +109,16 @@ The bundled attack packs cover:
 
 Each finding can include the triggering prompt, redacted response evidence, matched detector rules, severity, confidence, risk score, OWASP-style category, MITRE ATLAS-style tactic, and remediation guidance.
 
+## Synthetic scan reference reel
+
+The repository includes a reproducible vulnerable-vs-safe scan animation at [`frontend/public/animation/security-scan-reel.html`](frontend/public/animation/security-scan-reel.html). It executes the real attack-pack loader, `ScannerService`, deterministic `MockLLMProvider`, detector registry, redaction, and risk aggregation over a 12-test synthetic target.
+
+```bash
+python scripts/generate_security_animation.py
+```
+
+The source checksum, provider/model boundary, stable findings, risk comparison, and scene metrics are recorded in [`docs/animation/security_scan_sequence.json`](docs/animation/security_scan_sequence.json). The target is local and synthetic; no external endpoint or API key is contacted.
+
 ## Quick start
 
 ### Prerequisites

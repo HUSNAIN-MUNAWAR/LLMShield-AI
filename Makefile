@@ -1,4 +1,4 @@
-.PHONY: setup install migrate migration reset-db seed backend worker frontend dev docker-up docker-down scan-demo scan-demo-async ci-scan reports screenshots test test-backend test-frontend validate secret-scan run-all-checks clean
+.PHONY: setup install migrate migration reset-db seed backend worker frontend dev docker-up docker-down scan-demo scan-demo-async animation ci-scan reports screenshots test test-backend test-frontend validate secret-scan run-all-checks clean
 setup: install
 install:
 	cd backend && pip install -r requirements.txt
@@ -27,6 +27,8 @@ scan-demo:
 	python scripts/run_demo_scan.py
 scan-demo-async:
 	SCAN_EXECUTION_MODE=async python scripts/run_demo_scan.py
+animation:
+	python scripts/generate_security_animation.py
 ci-scan:
 	cd backend && python -m app.cli ci-scan --target mock-safe --attack-packs prompt_injection,jailbreak,rag_poisoning --fail-on high --output ../sample_outputs/reports/ci_report.json
 reports:

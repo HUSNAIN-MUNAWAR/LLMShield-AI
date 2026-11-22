@@ -1,0 +1,10 @@
+{
+  "fixture_id": "llmshield-mockllm-12-case-comparison",
+  "target": {
+    "id": "animation-mock-target",
+    "name": "Synthetic MockLLM target",
+    "type": "mock_llm"
+  },
+  "attack_pack_ids": ["prompt_injection", "secret_leakage", "tool_misuse"],
+  "comparison": "vulnerable_mode_vs_safe_mode"
+}
