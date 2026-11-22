@@ -119,6 +119,31 @@ python scripts/generate_security_animation.py
 
 The source checksum, provider/model boundary, stable findings, risk comparison, and scene metrics are recorded in [`docs/animation/security_scan_sequence.json`](docs/animation/security_scan_sequence.json). The target is local and synthetic; no external endpoint or API key is contacted.
 
+### Real local scanner evidence
+
+The strict runtime trace executes the actual `ScannerService` twice against the
+authorized synthetic target: once in vulnerable mode and once in safe mode.
+
+```powershell
+py -3.12 -u scripts/generate_real_runtime_video.py
+# or: make runtime-evidence
+```
+
+Outputs:
+
+```text
+docs/animation/runtime-evidence/llmshield-runtime.mp4
+docs/animation/runtime-evidence/llmshield-runtime-poster.png
+docs/animation/runtime-evidence/llmshield-findings.csv
+docs/animation/runtime-evidence/llmshield-runtime-summary.json
+```
+
+The captured run preserved 24 per-test rows: 11 vulnerable-mode failures and
+0 safe-mode failures, with risk scores 100 and 10 respectively. The provider
+is deterministic `MockLLM`; no learned checkpoint, live LLM, external endpoint,
+or API key was used. This is defensive scanner behavior over synthetic tests,
+not real-world LLM security coverage or certification.
+
 ## Quick start
 
 ### Prerequisites

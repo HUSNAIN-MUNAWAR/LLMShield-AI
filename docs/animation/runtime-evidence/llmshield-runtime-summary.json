@@ -1,0 +1,85 @@
+{
+  "run_type": "llmshield_real_local_mock_scanner_video",
+  "generated_at_utc": "2026-11-22T15:52:54.403242+00:00",
+  "command": "py -3.12 -u scripts/generate_real_runtime_video.py",
+  "source": {
+    "path": "demo_data\\animation\\synthetic_security_scan.json",
+    "fixture": "llmshield-mockllm-12-case-comparison",
+    "sha256": "a2a031b48a740b75cc4203b3f6676114a9b7e3b361d8b4449b09885d32fb35d6",
+    "target": {
+      "id": "animation-mock-target",
+      "name": "Synthetic MockLLM target",
+      "type": "mock_llm"
+    },
+    "attack_pack_ids": [
+      "prompt_injection",
+      "secret_leakage",
+      "tool_misuse"
+    ],
+    "pack_test_counts": {
+      "prompt_injection": 4,
+      "secret_leakage": 4,
+      "tool_misuse": 4
+    }
+  },
+  "model": {
+    "provider": "mock",
+    "model": "mock-deterministic",
+    "implementation": "backend/app/services/providers/mock_provider.py::MockLLMProvider",
+    "learned_checkpoint": null,
+    "deterministic": true,
+    "external_endpoint": false,
+    "claim_boundary": "Synthetic defensive scan using a rule-backed mock target; not live LLM or security certification evidence."
+  },
+  "vulnerable": {
+    "safe_mode": false,
+    "status": "completed",
+    "total_tests": 12,
+    "passed_tests": 1,
+    "failed_tests": 11,
+    "risk_score": 100.0,
+    "severity_distribution": {
+      "low": 1,
+      "medium": 0,
+      "high": 0,
+      "critical": 11
+    }
+  },
+  "safe": {
+    "safe_mode": true,
+    "status": "completed",
+    "total_tests": 12,
+    "passed_tests": 12,
+    "failed_tests": 0,
+    "risk_score": 10.0,
+    "severity_distribution": {
+      "low": 12,
+      "medium": 0,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "opencv": "4.13.0",
+    "numpy": "2.5.1",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "device": "cpu"
+  },
+  "outputs": {
+    "video": "docs\\animation\\runtime-evidence\\llmshield-runtime.mp4",
+    "poster": "docs\\animation\\runtime-evidence\\llmshield-runtime-poster.png",
+    "findings_csv": "docs\\animation\\runtime-evidence\\llmshield-findings.csv",
+    "sha256": {
+      "docs\\animation\\runtime-evidence\\llmshield-runtime.mp4": "6a691491cadb00443fd08d055d72617f332e8106a06bd7a91ef9e09a75c0c32b",
+      "docs\\animation\\runtime-evidence\\llmshield-runtime-poster.png": "5f4010033b017408fc3366d55c03d7b7f044ab3e3e97d6a5214bd27ba4d66cba",
+      "docs\\animation\\runtime-evidence\\llmshield-findings.csv": "b9dc6b097b08735fd8668478c7eda2967e77dfcafbffb7945b0c514d2a707a5a"
+    }
+  },
+  "interpretation": [
+    "This is a real local ScannerService run over the repository's authorized synthetic target and attack packs.",
+    "The provider is deterministic MockLLM; no live endpoint, OpenAI key, Ollama model, or learned checkpoint was used.",
+    "Vulnerable and safe-mode findings are preserved per test in the CSV.",
+    "The result demonstrates defensive scanner behavior, not real-world LLM security coverage or certification."
+  ]
+}
