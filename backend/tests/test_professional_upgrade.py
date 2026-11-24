@@ -287,6 +287,18 @@ def test_target_client_blocks_unsafe_endpoint():
     assert response.error == 'endpoint_blocked'
 
 
+def test_target_client_surfaces_custom_http_failures(monkeypatch):
+    class Client:
+        def __enter__(self): return self
+        def __exit__(self, *args): return None
+        def post(self, *args, **kwargs): raise RuntimeError('transport down')
+    import app.services.target_clients as mod
+    monkeypatch.setattr(mod.httpx, 'Client', lambda **kwargs: Client())
+    monkeypatch.setenv('ENDPOINT_ALLOWLIST', 'localhost')
+    response = TargetClient().send_prompt(TargetConfig(id='custom', name='c', type='custom_http', endpoint_url='http://localhost:8000/test'), 'hello')
+    assert response.error == 'request_failed: transport down'
+
+
 def test_scanner_lifecycle_completes():
     result = ScannerService().run_scan(TargetConfig(id='mock', name='Mock', type='mock_llm'), ['prompt_injection'])
     assert result.status == 'completed'

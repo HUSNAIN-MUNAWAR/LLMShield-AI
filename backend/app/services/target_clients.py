@@ -30,10 +30,18 @@ class TargetClient:
         if target.type=="custom_http" and target.endpoint_url:
             safety=validate_target_url(target.endpoint_url, allow_private=settings.enable_demo_targets)
             if not safety.allowed: return LLMResponse("",0,0,"custom_http",None,"endpoint_blocked")
-            with httpx.Client(timeout=settings.scan_timeout_seconds) as client:
-                r=client.post(target.endpoint_url, json={"prompt":prompt}, headers={"X-LLMShield-Authorized-Test":"true"}); r.raise_for_status()
-                content=r.content[:settings.max_response_bytes]
-                data=r.json() if "application/json" in r.headers.get("content-type","") else {"text":content.decode(errors="replace")}
-                text=str(data.get("response") or data.get("text") or data)
-                return LLMResponse(redact_text(text), int(r.elapsed.total_seconds()*1000), len(prompt.split())+len(text.split()), "custom_http")
+            try:
+                with httpx.Client(timeout=settings.scan_timeout_seconds) as client:
+                    r=client.post(target.endpoint_url, json={"prompt":prompt}, headers={"X-LLMShield-Authorized-Test":"true"})
+                    r.raise_for_status()
+                    content=r.content
+                    if len(content) > settings.max_response_bytes:
+                        return LLMResponse("",0,0,"custom_http",None,"response_too_large")
+                    data=r.json() if "application/json" in r.headers.get("content-type","") else {"text":content.decode(errors="replace")}
+                    text=str(data.get("response") or data.get("text") or "").strip()
+                    if not text:
+                        return LLMResponse("",0,0,"custom_http",None,"empty_response")
+                    return LLMResponse(redact_text(text), int(r.elapsed.total_seconds()*1000), len(prompt.split())+len(text.split()), "custom_http")
+            except Exception as exc:
+                return LLMResponse("",0,0,"custom_http",None,f"request_failed: {redact_text(str(exc))[:160]}")
         raise ValueError(f"Unsupported or incomplete target configuration: {target.type}")
